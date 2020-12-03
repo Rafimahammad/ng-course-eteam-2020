@@ -1,0 +1,158 @@
+<div class="container-fluid">
+    <p>Data Received from child comp: {{dataReceivedFromChildComp}}</p>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" data-toggle="tab" href="#basic-databinding" role="tab"
+                aria-controls="basic-databinding" aria-selected="true">Basic Data Binding</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#cpb-tab" role="tab" aria-controls="cpb-tab"
+                aria-selected="false">Custom Prop Binding</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#ceb-tab" role="tab" aria-controls="ceb-tab"
+                aria-selected="false">Child to Parent Comp Communication</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#directives-tab" role="tab"
+                aria-controls="directives-tab" aria-selected="false">Directives</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+
+        <div class="tab-pane fade show active" id="basic-databinding" role="tabpanel"
+            aria-labelledby="basic-databinding-tab">
+            <h2>Basic Data Binding</h2>
+            <h4>String Interpolation</h4>
+            <p>{{appName}}</p>
+            <p>No of Developers working on is: {{noOfDevelopers}}</p>
+            <p title="{{appName}}"> Mouseover to see the app name</p>
+            <input type="text" value="{{appName}}"> <!-- not recommended -->
+
+            <hr>
+            <h4>Property binding</h4>
+            <p [title]="averageExp">Mouseover to see avarage exp of the team</p>
+            <input type="text" [value]="appName"> <!-- recommended -->
+
+            <div class="brownText">Testing Style before property binding!</div>
+            <!-- <div [class]="brownText">will it work?</div>  wrong -->
+
+            <div [ngClass]="{ brownText : true }">will it work?</div>
+            <div [ngClass]="{ 'alert alert-danger' : true }">will it work? danger</div>
+
+            <div class="alert" [ngClass]="{ 'alert-success' : true, 'alert-danger' : false }">will it work? success
+            </div>
+
+            <!-- todo: ngStyle -->
+            <div [ngStyle]="{ 'background-color' : 'red', 'color': 'white'}">will it work?</div>
+            <div [ngStyle]="myStyles">will it work?</div>
+
+            <hr>
+            <h4>Event binding</h4>
+            <button type="button" onclick="clickMeHandler()">Click Me- will not work - check console</button>
+            <br><br>
+            <button type="button" (click)="clickMeHandler()">Click Me</button>
+
+            <!--todo: Handle event object -->
+            <!--todo: on click change the button text as 'clicked' -->
+            <!-- todo: click button disabled -->
+            <hr>
+            <button (click)="changeEventHandler($event)" class="btn btn-warning">Click Me</button>
+            <!-- <br><br>
+            <button (click)="changeText()" class="btn btn-success">{{text}}</button>
+            <br><br>
+            <button (click)="clickMeHandler1()" class="btn btn-primary" disabled>Click ME</button> -->
+
+            <hr>
+            <h4>Two Way Binding</h4>
+            <p>{{courseName}}</p>
+            <input type="text" [value]="courseName">
+            <br><br>
+            <input type="text" [(ngModel)]="courseName">
+
+        </div>
+
+        <div class="tab-pane fade" id="cpb-tab" role="tabpanel" aria-labelledby="cpb-tab-tab">
+            <h2>Custom Property Binding -- Parent to Child Comp Communication</h2>
+            <app-cpb></app-cpb>
+            <app-cpb [age]='20'></app-cpb>
+            <app-cpb [age]='30'></app-cpb>
+            <app-cpb [age]='40'></app-cpb>
+
+        </div>
+
+        <div class="tab-pane fade" id="ceb-tab" role="tabpanel" aria-labelledby="ceb-tab-tab">
+            <h2>Child to Parent Comp Communication</h2>
+            <!-- step 4 of ceb: have an event handler to recive the data in parent component-->
+            <app-ceb (profileLoaded)="profileLodedHandler($event)"></app-ceb>
+        </div>
+
+        <div class="tab-pane fade" id="directives-tab" role="tabpanel" aria-labelledby="directives-tab">
+            <h2>Directives</h2>
+            <pre>
+                Directives
+                -----
+                1.Attribute Directives
+                    ngClass,ngStyle, routerLink, routerLinkActive
+
+                2. Structural Directives will 
+                    make impact in structural layer
+                    *ngIf, *ngFor, ngSwitch
+
+                3. custom attribut directive
+
+                4. custom structural directive
+            </pre>
+
+            <h4>*ngIf</h4>
+
+            <div class="alert alert-success" *ngIf="isLoggedIn">
+                thanks for logging in... you can access our permium content.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="!isLoggedIn">
+                your are not authenticated. please login.
+            </div>
+
+            <pre>
+                *ngIf with else style
+                ----------
+            </pre>
+
+            <div class="alert alert-success" *ngIf="isLoggedIn; else isNotLoggedIn">
+                thanks for logging in... you can access our permium content.
+            </div>
+
+            <ng-template #isNotLoggedIn>
+                <div class="alert alert-danger">
+                    your are not authenticated. please login.
+                </div>
+            </ng-template>
+
+            <h4>*ngFor</h4>
+            <ul>
+                <li *ngFor="let skill of skillList; let indexOfelement=index;">#{{indexOfelement}} {{skill}}</li>
+            </ul>
+
+            <!-- todo: find index in the above *ngFor -->
+
+            <!-- todo: ngSwitch -->
+            <h4>ngSwitch</h4>
+            <ul [ngSwitch]="person">
+                <li *ngSwitchCase="'Mohan'">Hello Mohan</li>
+                <li *ngSwitchCase="'Sohan'">Hello Sohan</li>
+                <li *ngSwitchCase="'Vijay'">Hello Vijay</li>
+                <li *ngSwitchDefault>Bye Bye</li>
+            </ul>
+
+            <h4>Custom attribute directive</h4>
+
+            <div appColorizer>
+                Testing in colorizer directive
+                <button type="button" class="btn btn-danger">Click hear</button>
+            </div>
+
+            <h4>Custom structural directive</h4>
+            <p>ng g d concepts/directives/demo-if</p>
+            <div *appDemoIf>
+                <p>authenticated</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>

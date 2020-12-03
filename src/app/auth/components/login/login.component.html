@@ -1,0 +1,25 @@
+<div class="container">
+    <form class="form-signin col-md-6 offset-md-3" ngNativeValidate #loginForm="ngForm"
+        (ngSubmit)="loginHandler(loginForm)">
+        <!--  -->
+        <div class="text-center mb-4">
+            <p>Sign In here</p>
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" name="email" ngModel class="form-control" placeholder="Email address" required>
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" ngModel class="form-control" placeholder="Password" required>
+        </div>
+
+        <div>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+            <p>If you do not have an account, please create one! <a routerLink="/signup">Signup</a></p>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+    <form class="form-signin col-md-6 offset-md-3" ngNativeValidate #signUpFormData="ngForm"
+        (ngSubmit)="signupHandler(signUpFormData)">
+        <!--  -->
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Awesome App</h1>
+            <p>Sign up here</p>
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputName">Name</label>
+            <input type="text" name="fullName" class="form-control" ngModel placeholder="Full Name" required autofocus>
+
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" name="email" class="form-control" [(ngModel)]="signupInfo.email"
+                placeholder="Email address" required>
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" class="form-control" [(ngModel)]="signupInfo.password"
+                placeholder="Password" required>
+        </div>
+
+        <div>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        </div>
+    </form>
+</div>

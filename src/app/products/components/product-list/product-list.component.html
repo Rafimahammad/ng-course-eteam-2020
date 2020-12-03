@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="col">
+        <div class="row">
+
+            <div class="col-12 col-md-6 col-lg-3" *ngFor="let product of productList">
+                <div class="card">
+                    <img class="card-img-top" src="https://dummyimage.com/300x200/55595c/fff" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title"><a routerLink="/products/{{product.id}}" title="View Product">{{product.name}}</a></h4>
+                        <p class="card-text">Some quick example text to build on the card
+                            title and make up the bulk of the</p>
+                        <div class="row">
+                            <div class="col">
+                                <p class="btn btn-danger btn-block">{{product.price}}</p>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-success btn-block" (click)="addToCartHandler(product)">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

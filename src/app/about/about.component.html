@@ -1,0 +1,29 @@
+<div>
+    <h1>Pipes</h1>
+    <pre>
+        To transform info from one format to another
+        lowercase => uppercase
+        timestamp => human eadable date
+    </pre>
+
+    <p>{{randomText}}</p>
+    <p>{{randomText | uppercase}}</p>
+    <p>{{randomText | lowercase}}</p>
+    <p>{{randomText | titlecase}}</p>
+
+    <hr>
+    <p>{{today}}</p>
+    <p>{{today | date}}</p>
+    <p>{{today | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
+    <!--perameterised pipe -->
+    <p>{{today | date: 'MMMM-dd-yyyy hh:mm:ss a'}}</p>
+    <!--perameterised pipe -->
+
+    <hr>
+    <h2>Custom Pipes</h2>
+    <p>{{ dummyText }}</p>
+    <p>{{ dummyText | ellipsis }}</p>
+    <p>{{ dummyText | ellipsis: 24 }}</p>
+    <p>{{ dummyText | ellipsis: 48 }}</p>
+    <p>{{ dummyText | ellipsis: 60 }}</p>
+</div>

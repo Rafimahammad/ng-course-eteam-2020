@@ -1,0 +1,26 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" routerLink="/">Contact Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+            <app-menu>
+                <li class="nav-item headerMenu" *ngIf="!isLogedIn">
+                    <a class="nav-link" routerLink="/login">Login</a>
+                </li>
+                <li class="nav-item headerMenu" *ngIf="!isLogedIn">
+                    <a class="nav-link" routerLink="/signup">Signup</a>
+                </li>
+                <li class="nav-item headerMenu" *ngIf="isLogedIn" routerLinkActive="active">
+                    <a class="nav-link" href="/login" (click)="loggedOut()">Logout</a>
+                </li>
+            </app-menu>
+            <button type="button" class="btn btn-primary" style="margin-left: 20px" (click)="gotoCartHandler()"> Cart({{cartItemCount}})</button>
+        </div>
+
+    </nav>
+</header>
